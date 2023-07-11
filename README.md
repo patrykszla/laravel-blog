@@ -6,6 +6,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+# install dependencies
+composer install
+npm install
+
+# create .env file 
+cp .env.example .env
+php artisan key:generate
+
+# build CSS and JS assets
+npm run dev
+# or, if you prefer minified files
+npm run prod
+Then launch the server:
+
+php artisan serve
 
 ## About Laravel
 
