@@ -8,7 +8,34 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+    public function logout() {
+        auth()->logout();
+        return 'you now are logged out';
+    }
     
+    public function login(Request $request) {
+        $incomingFields = $request->validate([
+            'loginusername' => 'required',
+            'loginpassword' => 'required'
+        ]);
+
+        if(auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
+            $request->session()->regenerate();
+            return 'Congrats!!';
+        } else {
+            return 'sorry!!';
+        }
+    }
+
+    public function showCorrectHomepage(Request $request) {
+        if(auth()->check()) {
+            return view('homepage-feed');
+        } else {
+            return view('homepage');
+        }
+    }
+
     public function register(Request $request) {
         // var_dump($request);
         $incomingFields = $request->validate([
@@ -22,4 +49,6 @@ class UserController extends Controller
         // var_dump($incomingFields);
         return 'hello from register function';
     }
+
+    
 }
