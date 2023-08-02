@@ -4,22 +4,23 @@
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-# install dependencies
+# How to run project?
+
+1. install dependencies
 composer install
 npm install
 
-# create .env file 
+2. create .env file 
 cp .env.example .env
 php artisan key:generate
 
-# build CSS and JS assets
+3. build CSS and JS assets
 npm run dev
-# or, if you prefer minified files
-npm run prod
-# To run all of migrations
+
+4. To run all of migrations
 php artisan migrate
 
-Then launch the server:
+5. To run artisan serve
 
 php artisan serve
 
