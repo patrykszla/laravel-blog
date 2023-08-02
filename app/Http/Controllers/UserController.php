@@ -11,7 +11,8 @@ class UserController extends Controller
 
     public function logout() {
         auth()->logout();
-        return 'you now are logged out';
+        // return 'you now are logged out';
+        return redirect('/')->with('success', 'Successfully logged out');
     }
     
     public function login(Request $request) {
@@ -22,9 +23,10 @@ class UserController extends Controller
 
         if(auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
-            return 'Congrats!!';
+            //with give flash message
+            return redirect('/')->with('success', 'Successfully logged in');
         } else {
-            return 'sorry!!';
+            return redirect('/')->with('failure', 'Invalid login');
         }
     }
 
@@ -45,9 +47,10 @@ class UserController extends Controller
             //laravel looking for password_confirmation and check is the same as password
             'password' => ['required', 'min:5', 'confirmed'],
         ]);
-        User::create($incomingFields);
+        $user = User::create($incomingFields);
+        auth()->login($user);
         // var_dump($incomingFields);
-        return 'hello from register function';
+        return redirect('/')->with('success', 'Thank you for creating an account' );
     }
 
     
