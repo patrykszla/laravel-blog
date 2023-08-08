@@ -53,5 +53,8 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Thank you for creating an account' );
     }
 
+    public function profile() {
+        return view('profile-posts');
+    }
     
 }

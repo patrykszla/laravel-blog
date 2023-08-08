@@ -16,13 +16,17 @@ use App\Http\Controllers\UserController;
 */
 
 // User routes
-Route::get('/', [UserController::class, 'showCorrectHomepage']);
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/', [UserController::class, 'showCorrectHomepage'])->name('login');
+Route::post('/register', [UserController::class, 'register'])->middleware('guest');
+Route::post('/login', [UserController::class, 'login'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('mustBeLoggedIn');
 
 // Blog routes
-Route::get('/create-post', [PostController::class, 'showCreateForm']);
-Route::post('/create-post', [PostController::class, 'addNewPost']);
+Route::get('/create-post', [PostController::class, 'showCreateForm'])->middleware('mustBeLoggedIn');
+Route::post('/create-post', [PostController::class, 'addNewPost'])->middleware('auth');
 // this {post} must match with parameter in 'viewSinglePost' in PostController
 Route::get('/post/{post}', [PostController::class, 'viewSinglePost']);
+
+
+//Profile routes
+Route::get('/profile/{userId}', [UserController::class, 'profile']);
