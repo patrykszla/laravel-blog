@@ -49,12 +49,15 @@ class UserController extends Controller
         ]);
         $user = User::create($incomingFields);
         auth()->login($user);
-        // var_dump($incomingFields);
         return redirect('/')->with('success', 'Thank you for creating an account' );
     }
 
-    public function profile() {
-        return view('profile-posts');
+    public function profile(User $user) {
+        return view('profile-posts', [
+            'username' => $user->username, 
+        'posts' => $user->posts()->latest()->get(), 
+        'postCount' => $user->posts()->count()
+    ]);
     }
     
 }

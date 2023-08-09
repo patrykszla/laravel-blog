@@ -29,4 +29,4 @@ Route::get('/post/{post}', [PostController::class, 'viewSinglePost']);
 
 
 //Profile routes
-Route::get('/profile/{userId}', [UserController::class, 'profile']);
+Route::get('/profile/{user:userName}', [UserController::class, 'profile']);
