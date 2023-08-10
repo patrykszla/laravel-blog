@@ -54,7 +54,7 @@ class UserController extends Controller
 
     public function profile(User $user) {
         return view('profile-posts', [
-            'username' => $user->username, 
+        'username' => $user->username, 
         'posts' => $user->posts()->latest()->get(), 
         'postCount' => $user->posts()->count()
     ]);

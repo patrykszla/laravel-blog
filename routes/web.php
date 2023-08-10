@@ -26,6 +26,7 @@ Route::get('/create-post', [PostController::class, 'showCreateForm'])->middlewar
 Route::post('/create-post', [PostController::class, 'addNewPost'])->middleware('auth');
 // this {post} must match with parameter in 'viewSinglePost' in PostController
 Route::get('/post/{post}', [PostController::class, 'viewSinglePost']);
+Route::delete('/post/{post}', [PostController::class, 'delete']);
 
 
 //Profile routes
