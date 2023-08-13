@@ -4,10 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
+use App\Policies\PostPolicy;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
+
+    public function delete(Post $post) {
+        // auth()->user()->cannot('delete', $post);
+        // if (auth()->user()->can('delete', $post)) {
+        //     return 'you cannot do that';
+        // }
+        $post->delete();
+        return redirect('/profile/' . auth()->user()->username)->with('success', 'Post successfully deleted.');
+
+    }
 
     public function viewSinglePost(Post $post) {
         $post['body'] = strip_tags(Str::markdown($post->body), '<p><ul><ol><li><strong><h3>');
