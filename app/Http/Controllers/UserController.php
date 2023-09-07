@@ -10,8 +10,13 @@ class UserController extends Controller
 {
 
     public function storeAvatar(Request $request) {
+        // $request->file('avatar')->store('public/avatar');
+        // return 'hey';
+        $request->validate([
+            'avatar' => 'required|image|max:3000'
+        ]);
+
         $request->file('avatar')->store('public/avatar');
-        return 'hey';
     }
 
     public function showAvatarForm(){
