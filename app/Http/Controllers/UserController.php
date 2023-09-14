@@ -22,6 +22,8 @@ class UserController extends Controller
         // $request->file('avatar')->store('public/avatar');
         $imgData = Image::make($request->file('avatar'))->fit(120)->encode('jpg');
         Storage::put('public/avatars/'. $filename, $imgData);
+        $user->avatar = $filename;
+        $user->save();
     }
 
     public function showAvatarForm(){
