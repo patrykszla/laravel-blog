@@ -7,24 +7,22 @@
 # How to run project?
 
 1. install dependencies
-composer install
-npm install
+"composer install"
+"npm install"
 
 2. create .env file 
-cp .env.example .env
-php artisan key:generate
+"cp .env.example .env"
+"php artisan key:generate"
 
 3. build CSS and JS assets
-npm run dev
+"npm run dev"
 
 4. To run all of migrations
-php artisan migrate
+"php artisan migrate"
 
-5. To run artisan serve
+5. To run artisan serve "php artisan serve"
 
-php artisan serve
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
