@@ -20,16 +20,15 @@ class FollowController extends Controller
         if($existCheck) {
             return back()->with('failure', 'You already following that user');
         }
-        echo 'jestes';
         $newFollow = new Follow;
         $newFollow->user_id = auth()->user()->id;
         $newFollow->followeduser = $user->id;
         $newFollow->save();
-
         return back()->with('success', 'User successfully followed.');
     }
 
-    public function removeFollow() {
-
+    public function removeFollow(User $user) {
+        Follow::where([['user_id', '=', auth()->user()->id],['followeduser', '=', $user->id]])->delete();
+        return back()->with('success', 'User succesfully unfollowed');
     }
 }

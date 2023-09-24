@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Follow;
 class UserController extends Controller
 {
 
@@ -81,7 +81,16 @@ class UserController extends Controller
     }
 
     public function profile(User $user) {
+        $currentlyFollowing = 0;
+        
+        if(auth()->check()) {
+            $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id],['followeduser', '=', $user->id]])->count();
+        } 
+
+        // $currentlyFollowing = Follow::where();
+
         return view('profile-posts', [
+        'currentlyFollowing' => $currentlyFollowing,
         'avatar' =>$user->avatar,
         'username' => $user->username, 
         'posts' => $user->posts()->latest()->get(), 
