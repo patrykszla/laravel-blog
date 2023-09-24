@@ -46,3 +46,5 @@ Route::post('/remove-follow/{user:username}', [FollowController::class, 'removeF
 
 //Profile routes
 Route::get('/profile/{user:userName}', [UserController::class, 'profile']);
+Route::get('/profile/{user:userName}/followers', [UserController::class, 'profileFollowers']);
+Route::get('/profile/{user:userName}/following', [UserController::class, 'profileFollowing']);
