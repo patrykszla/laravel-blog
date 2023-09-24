@@ -98,13 +98,6 @@ class UserController extends Controller
     }
 
     public function profile(User $user) {
-        // $currentlyFollowing = 0;
-    
-        // if(auth()->check()) {
-        //     $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id],['followeduser', '=', $user->id]])->count();
-        // } 
-        
-        // $currentlyFollowing = Follow::where();
         $this->getSharedData($user);
         return view('profile-posts', [
         'posts' => $user->posts()->latest()->get(), 
@@ -112,28 +105,14 @@ class UserController extends Controller
     }
 
     public function profileFollowers(User $user) {
-        // $currentlyFollowing = 0;
-    
-        // if(auth()->check()) {
-        //     $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id],['followeduser', '=', $user->id]])->count();
-        // } 
-
-        // $currentlyFollowing = Follow::where();
         $this->getSharedData($user);
-
+        // return $user->followers()->latest()->get();
         return view('profile-followers', [
-            'posts' => $user->posts()->latest()->get(), 
+            'followers' => $user->followers()->latest()->get(), 
         ]);
     }
 
     public function profileFollowing(User $user) {
-        // $currentlyFollowing = 0;
-    
-        // if(auth()->check()) {
-        //     $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id],['followeduser', '=', $user->id]])->count();
-        // } 
-
-        // $currentlyFollowing = Follow::where();
         $this->getSharedData($user);
 
         return view('profile-following', [
