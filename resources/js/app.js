@@ -1,3 +1,7 @@
 import './bootstrap';
+import Search from './live-search';
 
-alert('test 123');
+if(document.querySelector(".header-search-icon")) {
+    new Search();
+}
+// alert('test 123444');
