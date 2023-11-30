@@ -1,4 +1,6 @@
 import DOMPurify from "dompurify"
+// import { axios } from 'axios';
+// import axios from 'axios';
 
 export default class Chat {
   constructor() {
@@ -29,7 +31,7 @@ export default class Chat {
     const test = document.createElement("div")
     test.innerHTML = DOMPurify.sanitize(this.chatField.value)
 
-    axios.post("/send-chat-message", { "textvalue": this.chatField.value })
+    axios.post("/send-chat-message", { "textvalue": 'tetss' })
 
     this.chatLog.insertAdjacentHTML(
       "beforeend",
